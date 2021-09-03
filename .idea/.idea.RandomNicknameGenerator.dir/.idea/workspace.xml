@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d48987d3-82e0-4b84-8d7b-0f2b415cd007" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/library.lua" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/random_nickname_generator.lua" afterDir="false" />
-    </list>
+    <list default="true" id="d48987d3-82e0-4b84-8d7b-0f2b415cd007" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +85,7 @@
       <option name="presentableId" value="Default" />
       <updated>1630658452084</updated>
       <workItem from="1630658455908" duration="1358000" />
-      <workItem from="1630660844777" duration="3663000" />
+      <workItem from="1630660844777" duration="4091000" />
     </task>
     <servers />
   </component>
