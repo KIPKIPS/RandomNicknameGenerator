@@ -19,5 +19,113 @@ end
 local getNickName = function()
     return getNickHeader()..getNickFoot()
 end
+local function n_gmatch(str,regex)
+    local rs
+    local match_str_all = '' -- 累计匹配到的字符串
+    if type(str) == 'string' and str ~= '' and type(regex) == 'string' and regex ~= '' then
+        local _start,_end,reg_pre,min_num,comma,max_num,reg_end = string.find(regex, '^([^%{%}]+)%{(%d*)(,?)(%d*)%}([^%{%}]*)$')
+        if _start and _end then
+            -- 正则包含{}
+            if min_num == '' and max_num == '' then
+                -- {}内容为空
+                -- print('{}内容为空')
+            else
+                if comma == '' then
+                    -- {n} 格式
+                    max_num = min_num
+                end
+                min_num = tonumber(min_num) or 0
+                max_num = tonumber(max_num) or 99999999
 
-print(getNickName())
+                if min_num <= max_num then
+
+                    -- print('前置正则:'..reg_pre,'后置正则:'..reg_end,'最小次数:'..min_num,'最大次数:'..max_num)
+
+                    local start_est,end_est = false,false --是否是从最开始或最结尾匹配
+                    if string.sub(reg_pre,1,1) == '^' then
+                        start_est = true
+                        reg_pre = string.sub(reg_pre,2)
+                    end
+
+                    local match_num = 0
+                    for match in string.gmatch(str, reg_pre) do
+                        match_num = match_num + 1
+                        match_str_all = match_str_all..match
+                        -- print('match_str_all:'..match_str_all)
+                        -- 判断是否是连续匹配
+                        local _start,_end = string.find(str,match_str_all,1,false)
+                        if not _start or not _end then
+                            -- print('非连续匹配')
+                            match_num = 0
+                            break
+                        elseif match_num == 1 and start_est then
+                            -- 正则中包含^ 判断第一次匹配到的字符串是否在str的开头
+                            if _start ~= 1 then
+                                -- print('第1次匹配内容:'..match..'不在str开头,结束匹配')
+                                match_num = 0
+                                break
+                            end
+                        end
+
+                        if max_num and match_num >= max_num then
+                            -- print('匹配次数到达上限'..max_num..',结束{...}前字符匹配')
+                            break
+                        end
+                    end
+
+                    if match_num < min_num then
+                        -- print('匹配次数小于最小匹配次数'..min_num)
+                    else
+                        local str_remain = ''
+                        if match_str_all == '' then
+                            str_remain = str
+                        else
+                            local _start,_end = string.find(str,match_str_all,1,false)
+                            str_remain = string.sub(str,_end+1)
+                        end
+
+                        -- print('str已匹配:'..match_str_all,'str剩余:'..str_remain,'reg剩余:'..reg_end)
+
+                        if reg_end == '' then
+                            rs = match_str_all
+                        else
+                            -- 拿剩余字符和{}后面的正则匹配
+                            local _start,_end =string.find(str_remain,'^'..reg_end)
+                            if _start and _end then
+                                local str_match = string.sub(str_remain,_start,_end)
+                                match_str_all = match_str_all..str_match
+                                rs = match_str_all
+                            end
+                        end
+                    end
+                else
+                    -- print('最大值小于最小值')
+                end
+            end
+        else
+            -- 沿用普通正则 find
+            -- print('正则不符合...{}...格式，沿用普通正则匹配')
+            local _start,_end = string.find(str,regex)
+            if _start and _end then
+                match_str_all = string.sub(str,_start,_end)
+                rs = match_str_all
+            end
+        end
+    else
+        -- str或regex格式不正确
+        -- print('str或regex格式不正确')
+    end
+    return rs
+end
+--print(getNickName())
+-- 敏感词匹配
+print("--正则--")
+print(string.find('老大原型', '(老大|老二|老三|老四|老五|老六|六子|張蔴子|牧之)原型'))
+print(string.find('ac', '(a|b|c|d|e|f|g|h|i)c'))
+--print(string.find('評平貧', '[評平貧][語語][近禁]'))
+--无尽.{0,5}皇冠|皇冠.{0,5}无尽
+--print(string.find('无尽..皇冠', '无尽.{0,5}皇冠'))
+--print(n_gmatch('caaaaa', 'c(aa){0,5}a'))
+--local str = "aaaaa123,456,10,5"
+----print(n_gmatch(str,'^(%d+,){1,3}%w+$')) -- nil
+--print(n_gmatch(str,'(%d+,){1,3}%w+$')) -- 123,456,10,5

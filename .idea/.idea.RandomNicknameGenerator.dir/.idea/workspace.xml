@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d48987d3-82e0-4b84-8d7b-0f2b415cd007" name="Default Changelist" comment="" />
+    <list default="true" id="d48987d3-82e0-4b84-8d7b-0f2b415cd007" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/random_nickname_generator.lua" beforeDir="false" afterPath="$PROJECT_DIR$/random_nickname_generator.lua" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,14 +20,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/random_nickname_generator.lua" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LICENSE" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/library.lua" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/random_nickname_generator.lua" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/random_nickname_generator.lua" />
       <option value="$PROJECT_DIR$/library.lua" />
+      <option value="$PROJECT_DIR$/random_nickname_generator.lua" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1xcdkFJ8dzsjd9X2FPBp3g4n73M" />
@@ -86,6 +88,9 @@
       <updated>1630658452084</updated>
       <workItem from="1630658455908" duration="1358000" />
       <workItem from="1630660844777" duration="4091000" />
+      <workItem from="1635748545907" duration="4271000" />
+      <workItem from="1635835691067" duration="7087000" />
+      <workItem from="1635924893019" duration="2261000" />
     </task>
     <servers />
   </component>
